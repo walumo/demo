@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block body %}
+
+<h1>Listing of jobs in database</h1>
+
+{% endblock %}
+
+
+{% block footer %}
+
+<div id="footer" class="col fixed-bottom text-center">
+    <p style="font-weight: bold;">Walumo Development <span id="date"></span></p>
+</div>
+
+<script type="text/javascript">
+var d = new Date();
+var n = d.getFullYear();
+document.getElementById("date").innerHTML = "&copy" + n;
+</script>
+
+{% endblock %}
+

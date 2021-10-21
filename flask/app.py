@@ -14,10 +14,26 @@ def login():
 
 @app.route("/login", methods=["POST"])
 def loginCheck():
-    if request.form["username"]=="user" and request.form["password"]=="password":
+    if request.form["username"]=="admin" and request.form["password"]=="password":
         return render_template("yobber.html")
     else:
         return render_template("index.html")
+
+
+@app.route("/showmap")
+def showMap():
+    # return string Hello World
+    return render_template("yobber.html")
+
+@app.route("/addjob")
+def addJob():
+    # return string Hello World
+    return render_template("addjob.html")
+      
+@app.route("/listjobs")
+def listJobs():
+    # return string Hello World
+    return render_template("listjobs.html")
         
 
 

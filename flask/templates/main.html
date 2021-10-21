@@ -7,22 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/cssID.css') }}">
-    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
     <title>Yobber</title>
 </head>
-
 <body>
 
-<!---block for nav elements-->
-{% block navigation %}
+<!--LOGO to toggle sliding menu from the left-->
+<nav class="nav">
+  <a class="float-start" data-bs-toggle="offcanvas" data-bs-target="#sliderMenu"><img src="{{ url_for('static',filename='media/logo.png') }}" width="80" height="auto" alt="YBR"></a>
+  <h2>Admin</h2>
+</nav>
 
-{% endblock %}
+<!--sliding menu code-->
+<div class="offcanvas offcanvas-start bg-bg-light" tabindex="-1" id="sliderMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="sliderMenuLabel">Menu</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link btn-outline-light" href="/showmap">Show map</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link btn-outline-light" href="/addjob">Add jobs</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link btn-outline-light" href="/listjobs">List jobs</a>
+      </li>
+</ul>
+  </div>
+</div>
+<hr>
 
 <!---block for google map element, with cards for showing data-->
-{% block mapper %}
+<div id="bodywrapper">
+{% block body %}
 
 {% endblock %}
-
+</div>
 
 <!---block for popup-form to enter new job-->
 {% block popup %}
@@ -33,10 +55,9 @@
 {% block footer %}
 
 {% endblock %}
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
