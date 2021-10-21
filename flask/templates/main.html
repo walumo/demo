@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/cssID.css') }}">
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+    <title>Yobber</title>
+</head>
+
+<body> <h1>YOBBER</h1>
+
+<div class="row-cols-12 fixed-top bg-black">
+<!---block for nav elements-->
+{% block navigation %}
+
+{% endblock %}
+</div>
+
+<!---block for google map element, with cards for showing data-->
+{% block mapper %}
+
+{% endblock %}
+
+
+<!---block for popup-form to enter new job-->
+{% block popup %}
+
+{% endblock %}
+
+<!---footer block-->
+{% block footer %}
+
+{% endblock %}
+
+</body>
+
+</html>

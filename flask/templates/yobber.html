@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block navigation %}
+
+<h1>NAV ELEMENTS</h1>
+
+{% endblock %}
+
+
+
+{% block mapper %}
+
+<h1>MAP ELEMENTS HERE</h1>
+
+{% endblock %}
+
+
+
+{% block footer %}
+
+<div class="col fixed-bottom text-center">
+    <p style="font-weight: bold;">Walumo Development <span id="date"></span></p>
+</div>
+
+<script type="text/javascript">
+var d = new Date();
+var n = d.getFullYear();
+document.getElementById("date").innerHTML = "&copy" + n;
+</script>
+
+{% endblock %}
+
