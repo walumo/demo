@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="mx-2">
-<form method="post" action="/addjob">
+<form method="post" action="/newjob">
   <div class="form-group">
     <label for="title"><b>Job: </b></label>
     <input name="title" type="text" class="form-control" id="title" placeholder="Enter job title">
@@ -26,7 +26,7 @@
     </div>
   <div class="form-group">
     <label for="address"><b>Street address:</b></label>
-    <textarea name="street" class="form-control" id="address" rows="1" placeholder="Street address"></textarea>
+    <textarea name="address" class="form-control" id="address" rows="1" placeholder="Street address"></textarea>
   </div>
   <div class="form-group">
     <label for="zipcode"><b>Zip code:</b></label>
@@ -41,7 +41,7 @@
     <textarea name="description" class="form-control" id="description" rows="8" placeholder="Add information about the job"></textarea>
   </div>
     <div class="btn-group"> <!-- Submit button -->
-        <button class="btn btn-primary " name="submit" type="submit">Add job</button>
+        <button class="btn btn-primary " name="submit" type="submit" href="/newjob">Add job</button>
         <a class="btn btn-danger" href="/addjob">Reset</a>
       </div>
 </form>

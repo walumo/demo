@@ -1,6 +1,7 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect, url_for
 from markupsafe import escape
+from database.operations import insert
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ def loginCheck():
 #   Google map functionality    #
 #################################
 
-@app.route("/showmap", methods=["POST", "GET"])
+@app.route("/showmap", methods=["GET"])
 def showMap():
     return render_template("showmap.html")
 
@@ -36,8 +37,20 @@ def showMap():
 @app.route("/addjob")
 def addJob():
     return render_template("addjob.html")
+
+@app.route('/newjob', methods=['GET', 'POST'])
+def submit():
+    if request.method=='GET':
+        redirect('/addjob')
+    else:
+        if insert(request.form['title'], request.form['payment'], request.form['datetime'], 
+                request.form['telephone'], request.form['address'], request.form['zipcode'], 
+                request.form['city'], request.form['description']):
+            return "Data inserted"
+        else:
+            return "Data not inserted"    
       
-@app.route("/listjobs")
+@app.route("/listjobs", methods=["GET"])
 def listJobs():
     return render_template("listjobs.html")
         
