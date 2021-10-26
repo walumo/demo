@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cssID.css') }}">
+  <title>Yobber</title>
+</head>
+
+<body>
+
+
+
+  <!--LOGO to toggle sliding menu from the left-->
+  <nav class="nav col-12 sticky-top bg-primary">
+    <a class="float-start" data-bs-toggle="offcanvas" data-bs-target="#sliderMenu"><img
+        src="{{ url_for('static',filename='media/logo.png') }}" width="80" height="auto" alt="YBR"></a>
+
+    <!--sliding menu code-->
+    <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="sliderMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sliderMenuLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link btn-outline-light" href="/showmap">Show map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-light" href="/addjob">Add jobs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-outline-light" href="/listjobs">List jobs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </nav>
+
+  {% block body %}
+
+  {% endblock %}
+
+
+  <!---footer-->
+  <footer class="align-self-center text-center bg-primary">
+    <p style="font-weight: bold;">Walumo Development <span id="date"></span></p>
+  </footer>
+
+  <script type="text/javascript">
+    var d = new Date();
+    var n = d.getFullYear();
+    document.getElementById("date").innerHTML = "&copy" + n;
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg9Xyz8cJsB3DIBW9zmSIj2SrLHRVZ3tc&callback=initMap&v=weekly"
+    async></script>
+
+  <script src="{{ url_for('static',filename='js/yobber.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+    integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</body>
+
+</html>

@@ -7,10 +7,12 @@
 
 }
 
-#bodywrapper{
-    background-color: 2f4f4f;
+#map {
+    height: 85%;
 }
 
-#footer{
-    background-color: #2f4f4f;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
