@@ -2,14 +2,16 @@
 
 {% block body %}
 
-<h1>Listing of jobs in database</h1>
+<div class="text-center">
+<h1>Jobs:</h1>
+</div>
 
 <div class="accordion" id="joblist">
   {% for job in joblist %}
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{job.id}}">
-        <h5>{{ job.job_title }} <i>scheduled at:</i>{{ job.start_date }}</h5>
+        <h5><span style="text-transform:uppercase">{{ job.job_title }}</span> <i>scheduled at:</i>{{ job.start_date }}</h5>
       </button>
     </h2>
     <div id="job{{job.id}}" class="accordion-collapse collapse">
