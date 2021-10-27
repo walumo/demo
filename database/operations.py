@@ -4,8 +4,8 @@ from sqlalchemy import or_
 def __get_session():
     return Session()
 
-def insert(title, payment, datetime, telephone, address, zipcode, city, description):
-    new_row=job(job_title=title, payment_type=payment, start_date=datetime, telephone=telephone, street=address, zipcode=zipcode, city=city, description=description)
+def insert(title, payment, date, telephone, address, zipcode, city, description):
+    new_row=job(job_title=title, payment_type=payment, start_date=date, telephone=telephone, street=address, zipcode=zipcode, city=city, description=description)
 
     db = __get_session()
     db.add(new_row)

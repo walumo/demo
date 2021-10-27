@@ -23,7 +23,7 @@ class job(Base):
     description = Column(String(5000))
 
     def __repr__(self):
-        return f"<Job ('{self.job_title}', '{self.payment_type}', '{self.start_date}', '{self.telephone}', '{self.street}', '{self.zipcode}', '{self.city}', '{self.description}')>"
+        return f"<Job ('{self.job_title}', '{self.payment_type}', '{self.start_date}', '{self.start_time}', '{self.telephone}', '{self.street}', '{self.zipcode}', '{self.city}', '{self.description}')>"
 
 engine = create_engine('sqlite:///database.db')
 Session = sessionmaker(bind=engine)

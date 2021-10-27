@@ -1,7 +1,7 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect, url_for
 from markupsafe import escape
-from database.operations import insert
+from database.operations import insert, search, get
 
 app = Flask(__name__)
 
@@ -46,13 +46,14 @@ def submit():
         if insert(request.form['title'], request.form['payment'], request.form['datetime'], 
                 request.form['telephone'], request.form['address'], request.form['zipcode'], 
                 request.form['city'], request.form['description']):
-            return "Data inserted"
+            return redirect('/listjobs')
         else:
-            return "Data not inserted"    
+            return "There was an error!"    
       
 @app.route("/listjobs", methods=["GET"])
 def listJobs():
-    return render_template("listjobs.html")
+    joblist = get()
+    return render_template("listjobs.html", joblist=joblist)
         
 
 

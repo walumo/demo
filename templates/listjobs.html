@@ -4,5 +4,28 @@
 
 <h1>Listing of jobs in database</h1>
 
+<div class="accordion" id="joblist">
+  {% for job in joblist %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#job{{job.id}}">
+        <h5>{{ job.job_title }} <i>scheduled at:</i>{{ job.start_date }}</h5>
+      </button>
+    </h2>
+    <div id="job{{job.id}}" class="accordion-collapse collapse">
+      <div class="accordion-body">
+        <h5>Contact: {{job.telephone}} </h5>
+        <h5>Payment by: {{job.payment_type}}</h5>
+        <h5>Location:</h5>
+        <p>{{job.street}} , {{job.zipcode}} , {{job.city}}</p>
+        <h5>Description</h5>
+        <p>{{ job.description }}</p>
+        <a href="#" class="btn btn-success">Start</a>
+        <a href="#" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}
 
