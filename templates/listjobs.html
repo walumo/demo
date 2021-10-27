@@ -22,8 +22,8 @@
         <p>{{job.street}} , {{job.zipcode}} , {{job.city}}</p>
         <h5>Description</h5>
         <p>{{ job.description }}</p>
-        <a href="#" class="btn btn-success">Start</a>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="#" class="btn btn-success disabled">Start</a>
+        <a href="/delete/{{job.id}}" class="btn btn-danger">Delete</a>
       </div>
     </div>
     {% endfor %}

@@ -1,9 +1,15 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect, url_for
 from markupsafe import escape
-from database.operations import insert, search, get
+import sqlalchemy
+from sqlalchemy.orm import Session
+from database import job, Session
+import database
+from database.operations import get_session, insert, get
+
 
 app = Flask(__name__)
+
 
 #################
 #   Logging in  #
@@ -25,7 +31,7 @@ def loginCheck():
 #   Google map functionality    #
 #################################
 
-@app.route("/showmap", methods=["GET"])
+@app.route("/showmap", methods=["GET", "POST"])
 def showMap():
     return render_template("showmap.html")
 
@@ -54,8 +60,10 @@ def submit():
 def listJobs():
     joblist = get()
     return render_template("listjobs.html", joblist=joblist)
-        
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    return render_template('showmap.html')
 
 # if running directly by invoking app.py then start flask
 if __name__ == "__main__":

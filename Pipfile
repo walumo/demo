@@ -8,6 +8,7 @@ flask = "*"
 flask-sqlalchemy = "*"
 sqlalchemy = "*"
 python-dotenv = "*"
+flask-googlemaps = "*"
 
 [dev-packages]
 
