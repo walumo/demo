@@ -5,7 +5,9 @@ from sqlalchemy.orm import sessionmaker
 import os
 from datetime import datetime
 from sqlalchemy.orm.session import Session
+from dotenv import load_dotenv
 
+load_dotenv()
 
 Base = declarative_base()
 
@@ -25,5 +27,6 @@ class job(Base):
     def __repr__(self):
         return f"<Job ('{self.job_title}', '{self.payment_type}', '{self.start_date}', '{self.start_time}', '{self.telephone}', '{self.street}', '{self.zipcode}', '{self.city}', '{self.description}')>"
 
-engine = create_engine('sqlite:///database.db')
+DATABASE_URL = os.environ['DATABASE_URL']
+engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)

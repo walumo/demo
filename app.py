@@ -1,10 +1,6 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect, url_for
 from markupsafe import escape
-import sqlalchemy
-from sqlalchemy.orm import Session
-from database import job, Session
-import database
 from database.operations import delete, insert, get
 
 
