@@ -25,3 +25,8 @@ def search(keyword):
 def get():
     return get_session().query(job).all()
 
+def delete(id):
+    db = get_session()
+    db.query(job).filter(job.id==id).delete()
+    db.commit()
+    db.close()

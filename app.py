@@ -5,7 +5,7 @@ import sqlalchemy
 from sqlalchemy.orm import Session
 from database import job, Session
 import database
-from database.operations import get_session, insert, get
+from database.operations import delete, insert, get
 
 
 app = Flask(__name__)
@@ -61,9 +61,10 @@ def listJobs():
     joblist = get()
     return render_template("listjobs.html", joblist=joblist)
 
-@app.route('/delete/<int:id>')
-def delete(id):
-    return render_template('showmap.html')
+@app.route('/delete/<id>')
+def delete_job(id):
+    delete(id)
+    return redirect('/listjobs')
 
 # if running directly by invoking app.py then start flask
 if __name__ == "__main__":
