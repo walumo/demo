@@ -1,11 +1,12 @@
 # Import flask object
-from flask import Flask, request, render_template, redirect, url_for
-from markupsafe import escape
+from flask import Flask, request, render_template, redirect
+from database import job
 from database.operations import delete, insert, get, next
 from flask_googlemaps import get_coordinates
 from dotenv import load_dotenv
 import os
 from sqlalchemy.orm import close_all_sessions
+import csv
 
 
 
@@ -38,16 +39,19 @@ def loginCheck():
 
 @app.route("/showmap", methods=["GET", "POST"])
 def showMap():
-    next_job = next()
-    address = get_coordinates(API_KEY, f'{next_job.street} " " {next_job.zipcode} " " {next_job.city}')
-    lat = address["lat"]
-    lon = address["lng"]
-    title = next_job.job_title
-    start = next_job.start_date
-    desc = next_job.description
-    info = [lat, lon, title, start, desc]
-    close_all_sessions()
-    return render_template("showmap.html", info=info)
+    try:
+        next_job = next()
+        address = get_coordinates(API_KEY, f'{next_job.street} " " {next_job.zipcode} " " {next_job.city}')
+        lat = address["lat"]
+        lon = address["lng"]
+        title = next_job.job_title
+        start = next_job.start_date
+        desc = next_job.description
+        info = [lat, lon, title, start, desc]
+        close_all_sessions()
+        return render_template("showmap.html", info=info)
+    except:
+        return render_template("error.html")
 
 
 ###################################
@@ -69,19 +73,29 @@ def submit():
             close_all_sessions()
             return redirect('/listjobs')
         else:
-            return "There was an error!"    
+            return redirect('/error')  
       
 @app.route("/listjobs", methods=["GET"])
 def listJobs():
-    joblist = get()
-    close_all_sessions()
-    return render_template("listjobs.html", joblist=joblist)
+    try:
+        joblist = get()
+        close_all_sessions()
+        return render_template("listjobs.html", joblist=joblist)
+    except:
+        return redirect('/error')
 
 @app.route('/delete/<id>')
 def delete_job(id):
-    delete(id)
-    close_all_sessions()
-    return redirect('/listjobs')
+    try:
+        delete(id)
+        close_all_sessions()
+        return redirect('/listjobs')
+    except:
+        return redirect('/error')
+
+@app.route('/error')
+def showerror():
+    return render_template('error.html')
 
 # if running directly by invoking app.py then start flask
 if __name__ == "__main__":

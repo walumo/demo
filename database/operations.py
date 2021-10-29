@@ -34,3 +34,11 @@ def delete(id):
     db.query(job).filter(job.id==id).delete()
     db.commit()
     db.close()
+
+def make_csv():
+    outfile = open('jobs.csv', 'wb')
+    outcsv = __get_session.writer(outfile)
+    records = __get_session.query(job).all()
+    [outcsv.writerow([getattr(curr, column.name) for column in job.__mapper__.columns]) for curr in records]
+    # or maybe use outcsv.writerows(records)
+    outfile.close()
