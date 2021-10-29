@@ -27,7 +27,7 @@ def login():
 @app.route("/login", methods=["POST"])
 def loginCheck():
     if request.form["username"]=="admin" and request.form["password"]=="password":
-        return render_template("showmap.html")
+        return redirect('/showmap')
     else:
         return render_template("index.html")
 
