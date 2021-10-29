@@ -12,7 +12,7 @@
     <title>Yobber login</title>
 </head>
 
-<body>
+<body onload=loader()>
     <div id="loginPage" class="container-fluid">
         <div id="loginForm" class="jumbotron text-center">
         
@@ -20,7 +20,7 @@
                 <video src="{{ url_for('static',filename='media/splash.mp4') }}" width="250px" height="auto" autoplay loop muted></video>
             </div>
 
-        <form method="post" action="/login">
+        <form id="loginform" style="visibility: hidden;" method="post" action="/login">
             <div class="col">
                 <input class="col-xs-12" name="username" type="text" id="username" placeholder="Enter username">
             </div>
@@ -44,6 +44,10 @@
     </div>
 
     <script type="text/javascript">
+        function loader(){
+            document.getElementById('loginform').style.visibility="visible";
+        }
+        
         var d = new Date();
         var n = d.getFullYear();
         document.getElementById("date").innerHTML = "&copy" + n;

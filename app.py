@@ -5,7 +5,9 @@ from database.operations import delete, insert, get, next
 from flask_googlemaps import get_coordinates
 from dotenv import load_dotenv
 import os
-import json
+from sqlalchemy.orm import close_all_sessions
+
+
 
 load_dotenv()
 
@@ -25,7 +27,7 @@ def login():
 @app.route("/login", methods=["POST"])
 def loginCheck():
     if request.form["username"]=="admin" and request.form["password"]=="password":
-        return render_template("showmap.html")
+        return redirect('/showmap')
     else:
         return render_template("index.html")
 
@@ -44,6 +46,7 @@ def showMap():
     start = next_job.start_date
     desc = next_job.description
     info = [lat, lon, title, start, desc]
+    close_all_sessions()
     return render_template("showmap.html", info=info)
 
 
@@ -63,6 +66,7 @@ def submit():
         if insert(request.form['title'], request.form['payment'], request.form['datetime'], 
                 request.form['telephone'], request.form['address'], request.form['zipcode'], 
                 request.form['city'], request.form['description']):
+            close_all_sessions()
             return redirect('/listjobs')
         else:
             return "There was an error!"    
@@ -70,11 +74,13 @@ def submit():
 @app.route("/listjobs", methods=["GET"])
 def listJobs():
     joblist = get()
+    close_all_sessions()
     return render_template("listjobs.html", joblist=joblist)
 
 @app.route('/delete/<id>')
 def delete_job(id):
     delete(id)
+    close_all_sessions()
     return redirect('/listjobs')
 
 # if running directly by invoking app.py then start flask
