@@ -1,12 +1,10 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect
-from database import job
 from database.operations import delete, insert, get, next
 from flask_googlemaps import get_coordinates
 from dotenv import load_dotenv
 import os
 from sqlalchemy.orm import close_all_sessions
-import csv
 
 
 

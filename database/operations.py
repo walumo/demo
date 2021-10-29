@@ -1,6 +1,4 @@
-from sqlalchemy.engine import create_engine
 from sqlalchemy.sql.expression import null
-from werkzeug.utils import redirect
 from database import job, Session
 from sqlalchemy import or_
 
@@ -35,10 +33,3 @@ def delete(id):
     db.commit()
     db.close()
 
-def make_csv():
-    outfile = open('jobs.csv', 'wb')
-    outcsv = __get_session.writer(outfile)
-    records = __get_session.query(job).all()
-    [outcsv.writerow([getattr(curr, column.name) for column in job.__mapper__.columns]) for curr in records]
-    # or maybe use outcsv.writerows(records)
-    outfile.close()
