@@ -9,9 +9,58 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/cssID.css') }}">
   <title>Yobber</title>
+
+<script>
+  ///////////////////////////////
+/// Google maps functions   ///
+///////////////////////////////
+
+//{ lat: 61.68857, lng: 27.27227 },
+//init map
+
+var info = {{ info|safe}};
+function initMap() {
+  const myLatLng = { lat: info[0], lng: info[1] };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: myLatLng,
+    disableDefaultUI: true,
+  });
+
+// Popup infowindow
+const contentString =
+    '<div id="content">' +
+    '<div id="siteNotice">' +
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">'+info[2]+'</h1>' +
+    '<h4>'+info[3]+'</h4>' +
+    '<div id="bodyContent">' +
+    "<p>"+info[4]+"</p>" +
+    "</div>" +
+    "</div>";
+  const infowindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+  const marker = new google.maps.Marker({
+    position: myLatLng,
+    map,
+    title: info[2],
+  });
+
+  marker.addListener("click", () => {
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
+    });
+  });
+}
+
+</script>
+
 </head>
 
-<body>
+<body onload="initMap()">
 
 
 
@@ -55,7 +104,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDg9Xyz8cJsB3DIBW9zmSIj2SrLHRVZ3tc&callback=initMap&v=weekly"
     async></script>
 
-  <script src="{{ url_for('static',filename='js/yobber.js') }}"></script>
+  <!--<script src="{{ url_for('static',filename='js/yobber.js') }}"></script>-->
   <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

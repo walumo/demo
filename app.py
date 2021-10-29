@@ -1,8 +1,15 @@
 # Import flask object
 from flask import Flask, request, render_template, redirect, url_for
 from markupsafe import escape
-from database.operations import delete, insert, get
+from database.operations import delete, insert, get, next
+from flask_googlemaps import get_coordinates
+from dotenv import load_dotenv
+import os
+import json
 
+load_dotenv()
+
+API_KEY = os.environ['API_KEY']
 
 app = Flask(__name__)
 
@@ -29,7 +36,15 @@ def loginCheck():
 
 @app.route("/showmap", methods=["GET", "POST"])
 def showMap():
-    return render_template("showmap.html")
+    next_job = next()
+    address = get_coordinates(API_KEY, f'{next_job.street} " " {next_job.zipcode} " " {next_job.city}')
+    lat = address["lat"]
+    lon = address["lng"]
+    title = next_job.job_title
+    start = next_job.start_date
+    desc = next_job.description
+    info = [lat, lon, title, start, desc]
+    return render_template("showmap.html", info=info)
 
 
 ###################################

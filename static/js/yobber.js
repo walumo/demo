@@ -1,16 +1,3 @@
-
-function login(){
-    var user = document.getElementById("username").value;
-    var pass = document.getElementById("password").value;
-    if(user !== "" && pass !== ""){
-    var creds = [user, pass];
-    }
-    else{
-        alert("Insufficient login data!");
-    }
-}
-
-
 ///////////////////////////////
 /// Google maps functions   ///
 ///////////////////////////////
@@ -32,7 +19,7 @@ const contentString =
     '<div id="content">' +
     '<div id="siteNotice">' +
     "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+    '<h1 id="firstHeading" class="firstHeading">{{next_job.title}}</h1>' +
     '<div id="bodyContent">' +
     "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
     "sandstone rock formation in the southern part of the " +
@@ -55,7 +42,7 @@ const contentString =
   const marker = new google.maps.Marker({
     position: myLatLng,
     map,
-    title: "Uluru (Ayers Rock)",
+    title: "{{next_job.title}}",
   });
 
   marker.addListener("click", () => {
