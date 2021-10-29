@@ -1,10 +1,8 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import sessionmaker
 import os
-from datetime import datetime
-from sqlalchemy.orm.session import Session
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,5 +26,5 @@ class job(Base):
         return f"<Job ('{self.job_title}', '{self.payment_type}', '{self.start_date}', '{self.start_time}', '{self.telephone}', '{self.street}', '{self.zipcode}', '{self.city}', '{self.description}')>"
 
 DATABASE_URL = os.environ['DATABASE_URL']
-engine = create_engine(DATABASE_URL)
-Session = sessionmaker(bind=engine)
+engine = create_engine(DATABASE_URL, pool_size=10)
+Session = sessionmaker(bind=engine )
