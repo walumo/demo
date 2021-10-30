@@ -32,4 +32,3 @@ def delete(id):
     db.query(job).filter(job.id==id).delete()
     db.commit()
     db.close()
-

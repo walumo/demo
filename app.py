@@ -51,7 +51,6 @@ def showMap():
     except:
         return render_template("error.html")
 
-
 ###################################
 #   Database funtions for jobs    #
 ###################################
