@@ -6,7 +6,7 @@
 <form method="post" action="/newjob" autocomplete="off">
   <div class="form-group">
     <label for="title"><b>Job: </b></label>
-    <input name="title" type="text" class="form-control" id="title" placeholder="Enter job title">
+    <input name="title" type="text" class="form-control" id="title" placeholder="Enter job title" required>
   </div>
   <div class="form-group">
     <label for="dropdown"><b>Payment by:</b></label>
@@ -18,27 +18,27 @@
   </div>
   <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="datetime"><b>Date</b></label>
-        <input name="datetime" class="form-control" id="datetime" placeholder="Pick a date" type="datetime-local"/>
+        <input name="datetime" class="form-control" id="datetime" placeholder="Pick a date" type="datetime-local" required/>
     </div>
   <div class="form-group"> <!-- Customer telephone -->
         <label class="control-label" for="telephone"><b>Contact:</b></label>
-        <input name="telephone" class="form-control" id="telephone" name="telephone" placeholder="Customer phone" type="tel"/>
+        <input name="telephone" class="form-control" id="telephone" name="telephone" placeholder="Customer phone" type="tel" required/>
     </div>
   <div class="form-group">
     <label for="address"><b>Street address:</b></label>
-    <textarea name="address" class="form-control" id="address" rows="1" placeholder="Street address"></textarea>
+    <textarea name="address" class="form-control" id="address" rows="1" placeholder="Street address" required></textarea>
   </div>
   <div class="form-group">
     <label for="zipcode"><b>Zip code:</b></label>
-    <textarea name="zipcode" class="form-control" id="zipcode" rows="1" placeholder="Enter zip code"></textarea>
+    <textarea name="zipcode" class="form-control" id="zipcode" rows="1" placeholder="Enter zip code" required></textarea>
   </div>
   <div class="form-group">
     <label for="city"><b>City:</b></label>
-    <textarea name="city" class="form-control" id="city" rows="1" placeholder="Enter city"></textarea>
+    <textarea name="city" class="form-control" id="city" rows="1" placeholder="Enter city" required></textarea>
   </div>
   <div class="form-group">
     <label for="description"><b>Job description:</b></label>
-    <textarea name="description" class="form-control" id="description" rows="8" placeholder="Add information about the job"></textarea>
+    <textarea name="description" class="form-control" id="description" rows="8" placeholder="Add information about the job" required></textarea>
   </div>
     <div class="btn-group"> <!-- Submit button -->
         <button class="btn btn-primary " name="submit" type="submit" href="/newjob">Add job</button>
