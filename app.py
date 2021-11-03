@@ -1,4 +1,3 @@
-# Import flask object
 from flask import Flask, request, render_template, redirect
 from database.operations import delete, insert, get, next
 from flask_googlemaps import get_coordinates
@@ -15,9 +14,9 @@ API_KEY = os.environ['API_KEY']
 app = Flask(__name__)
 
 
-#################
-#   Logging in  #
-#################
+#########################
+#       Logging in      #
+#########################
 
 @app.route("/")
 def login():
@@ -31,9 +30,17 @@ def loginCheck():
         return render_template("index.html")
 
 
-#################################
-#   Google map functionality    #
-#################################
+#####################################################################################
+#                               Google map geocoding                                #
+#####################################################################################
+#   -get the next job data
+#   -geocode address data with get_coordinates function from flask-googlemaps:
+#
+#        https://github.com/flask-extensions/Flask-GoogleMaps
+#   
+#   -read job data and geocoded address information to list "info"
+#   -render map page with info, which is read into a JS array with the help of Jinja    
+
 
 @app.route("/showmap", methods=["GET", "POST"])
 def showMap():
@@ -51,9 +58,11 @@ def showMap():
     except:
         return render_template("error.html")
 
-###################################
-#   Database funtions for jobs    #
-###################################
+
+
+#############################################
+#   Routing for the database functions      #
+#############################################
 
 @app.route("/addjob")
 def addJob():
@@ -90,10 +99,16 @@ def delete_job(id):
     except:
         return redirect('/error')
 
+
+#########################################
+#   Rendering error in case of 'err'    #
+#########################################
+
 @app.route('/error')
 def showerror():
     return render_template('error.html')
 
-# if running directly by invoking app.py then start flask
+
+#run app
 if __name__ == "__main__":
     app.run(port=5000)
