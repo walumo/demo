@@ -21,10 +21,16 @@ def search(keyword):
         job.start_date.ilike(f'%{keyword}%')))
 
 def get():
-    return __get_session().query(job).order_by(job.start_date)
+    db = __get_session()
+    query = db.query(job).order_by(job.start_date)
+    db.close()
+    return query
 
 def next():
-    return __get_session().query(job).order_by(job.start_date).first()
+    db = __get_session()
+    query = db.query(job).order_by(job.start_date).first()
+    db.close()
+    return query
 
 
 def delete(id):
